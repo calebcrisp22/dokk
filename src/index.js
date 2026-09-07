@@ -62,6 +62,7 @@ client.once(Events.ClientReady, async (c) => {
       console.warn(`⚠️  Could not set bot display name: ${error.message}`);
     });
   }
+  c.setPresence({ status: "dnd" });
   console.log(`\n🤖 Logged in as ${c.user.tag}`);
   console.log(`📡 Serving ${c.guilds.cache.size} guild(s)\n`);
   await Promise.all(c.guilds.cache.map((guild) => cacheGuildInvites(guild)));
