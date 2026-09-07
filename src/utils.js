@@ -74,6 +74,92 @@ export function parseAccountLines(raw, tier) {
     .filter(Boolean);
 }
 
+function parseCsvRow(line) {
+  const values = [];
+  let value = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    if (character === '"') {
+      if (quoted && line[index + 1] === '"') {
+        value += '"';
+        index += 1;
+      } else {
+        quoted = !quoted;
+      }
+    } else if (character === "," && !quoted) {
+      values.push(value.trim());
+      value = "";
+    } else {
+      value += character;
+    }
+  }
+  values.push(value.trim());
+  return values;
+}
+
+export function parseStockFile(raw, tier, filename = "") {
+  const text = String(raw ?? "").replace(/^\uFEFF/, "").trim();
+  if (!text) return { accounts: [], invalid: 0, total: 0, truncated: false };
+
+  const extension = String(filename).toLowerCase().split(".").pop();
+  let records;
+  let invalid = 0;
+
+  if (extension === "json" || text.startsWith("[") || text.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(text);
+      records = Array.isArray(parsed)
+        ? parsed
+        : Array.isArray(parsed.accounts)
+          ? parsed.accounts
+          : Array.isArray(parsed.stock)
+            ? parsed.stock
+            : [parsed];
+    } catch {
+      return { accounts: [], invalid: 1, total: 1, truncated: false };
+    }
+  } else if (extension === "csv") {
+    const rows = text.split(/\r?\n/).filter((line) => line.trim() && !line.trim().startsWith("#"));
+    if (rows.length) {
+      const first = parseCsvRow(rows[0]).map((value) => value.toLowerCase());
+      const hasHeader = first.some((value) =>
+        ["email", "password", "credentials", "username", "level"].includes(value)
+      );
+      const headers = hasHeader ? first : ["email", "password"];
+      records = (hasHeader ? rows.slice(1) : rows).map((line) => {
+        const values = parseCsvRow(line);
+        return Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ""]));
+      });
+    } else {
+      records = [];
+    }
+  } else {
+    records = text
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter((line) => line && !line.startsWith("#"));
+  }
+
+  const accounts = [];
+  for (const record of records) {
+    const account =
+      typeof record === "string"
+        ? parseAccountInput(record, tier)
+        : parseAccountInput(JSON.stringify(record), tier);
+    if (account) accounts.push(account);
+    else invalid += 1;
+  }
+
+  const maxAccounts = 500;
+  return {
+    accounts: accounts.slice(0, maxAccounts),
+    invalid,
+    total: accounts.length + invalid,
+    truncated: accounts.length > maxAccounts,
+  };
+}
+
 export function getColor(color) {
   return /^#[0-9a-f]{6}$/i.test(color ?? "") ? color : "#5865f2";
 }
@@ -125,7 +211,8 @@ export function buildAccountEmbed(
   imageReference = ""
 ) {
   const username = account.username ?? "Rainbow Six Account";
-  const image = imageReference || account.skin_link || DOKKABI_IMAGE_URL;
+  const image =
+    imageReference || account.skin_link || settings.embed_image_url || DOKKABI_IMAGE_URL;
   const embed = new EmbedBuilder()
     .setColor(getColor(settings.embed_color))
     .setAuthor({ name: publicView ? GENERATOR_NAME : GENERATOR_SHORT_NAME })

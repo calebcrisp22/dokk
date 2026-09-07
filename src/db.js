@@ -46,7 +46,8 @@ db.exec(`
     hype_enabled INTEGER NOT NULL DEFAULT 0,
     embed_color TEXT NOT NULL DEFAULT '#65c7c4',
     embed_title TEXT NOT NULL DEFAULT 'Dokkabi Generator R6',
-    footer_text TEXT NOT NULL DEFAULT 'Dokkabi Generator R6'
+    footer_text TEXT NOT NULL DEFAULT 'Dokkabi Generator R6',
+    embed_image_url TEXT
   );
   CREATE TABLE IF NOT EXISTS claims (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -94,6 +95,7 @@ const missingSettingColumns = {
   embed_color: "TEXT NOT NULL DEFAULT '#65c7c4'",
   embed_title: "TEXT NOT NULL DEFAULT 'Dokkabi Generator R6'",
   footer_text: "TEXT NOT NULL DEFAULT 'Dokkabi Generator R6'",
+  embed_image_url: "TEXT",
 };
 for (const [name, definition] of Object.entries(missingSettingColumns)) {
   if (!settingColumns.has(name)) {
@@ -141,6 +143,7 @@ export function getSettings(guildId) {
       embed_color: "#65c7c4",
       embed_title: "Dokkabi Generator R6",
       footer_text: "Dokkabi Generator R6",
+      embed_image_url: null,
     }
   );
 }
@@ -159,6 +162,7 @@ export function setSetting(guildId, key, value) {
     "embed_color",
     "embed_title",
     "footer_text",
+    "embed_image_url",
   ]);
   if (!allowed.has(key)) throw new Error(`Unknown setting ${key}`);
   db.prepare(`

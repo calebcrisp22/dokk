@@ -59,9 +59,10 @@ vouches, configurable channels, and admin controls.
 
 | Command | Description |
 | --- | --- |
-| `/addstock` | Add an account to free or Premium stock |
+| `/addstock` | Add one account or import a JSON, CSV, or TXT file into free or Premium stock |
 | `/clearstock` | Remove unused free or Premium stock |
 | `/edit` | Customize the Dokkabi Generator embed appearance |
+| `/setimage` | Set the default generator embed image by URL or uploaded image |
 | `/setsubscription` | Grant Premium access for a number of days |
 | `/setchannel` | Configure free or Premium generation channels |
 | `/setcooldown` | Configure generation cooldowns |
@@ -122,12 +123,28 @@ The bot also accepts the snake_case equivalents used by older stock files,
 such as `linked_platforms`, `black_ices`, and `ranked_history`. If only
 `credentials` is supplied, use the value `email@example.com:Password123`.
 
+### Bulk stock files
+
+Use `/addstock` with a category and the optional `file` attachment to import
+multiple accounts without pasting them one at a time. Supported files are:
+
+- `.json` — one account object, an array of account objects, or `{ "accounts": [...] }`
+- `.txt` — one `email:password` account per line
+- `.csv` — columns such as `email,password,username,level`
+
+Each upload can contain up to 500 accounts. Invalid records are skipped and
+reported in the private confirmation.
+
+Use `/setimage` with either `url:https://...` or an uploaded image in `file` to
+change the default image used by generator, stock, and drop embeds. The setting
+is saved separately for each server.
+
 When `/generate` is used in the configured generation channel, everyone sees
 the bot's temporary Discord “thinking” state. The same public message is then
 replaced with an embed naming the member who generated the account and showing
 safe account metadata without exposing credentials. Full account details are
 sent only to the claimant by DM. If `skinLink` is present, Discord displays that
-account image in the DM; otherwise the bot generates an Dokkabi R6 locker-card SVG.
+account image in the DM; otherwise the bot generates a Dokkabi R6 locker-card SVG.
 
 ## Invite tracking
 

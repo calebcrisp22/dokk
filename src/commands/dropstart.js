@@ -54,7 +54,7 @@ export async function execute(interaction) {
       { name: "Available", value: `${slots}`, inline: true },
       { name: "Duration", value: `${seconds}s`, inline: true }
     )
-    .setImage(DOKKABI_IMAGE_URL)
+    .setImage(settings.embed_image_url || DOKKABI_IMAGE_URL)
     .setFooter({ text: settings.footer_text });
   const row = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("drop_claim").setLabel("🎁 Claim Account").setStyle(ButtonStyle.Success)

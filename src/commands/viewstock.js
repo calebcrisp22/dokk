@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import { getSettings, getStockCount } from "../db.js";
+import { DOKKABI_IMAGE_URL } from "../utils.js";
 
 export const data = new SlashCommandBuilder()
   .setName("viewstock")
@@ -15,6 +16,7 @@ export async function execute(interaction) {
       { name: "🆓 Free", value: `**${getStockCount("free")}** accounts`, inline: true },
       { name: "💎 Premium", value: `**${getStockCount("premium")}** accounts`, inline: true }
     )
+    .setImage(settings.embed_image_url || DOKKABI_IMAGE_URL)
     .setFooter({ text: settings.footer_text })
     .setTimestamp();
   await interaction.reply({ embeds: [embed] });
