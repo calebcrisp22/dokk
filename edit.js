@@ -18,7 +18,7 @@ export async function execute(interaction) {
     return interaction.reply({ content: "❌ Admin permission required.", flags: MessageFlags.Ephemeral });
   }
   const current = getSettings(interaction.guildId);
-  const modal = new ModalBuilder().setCustomId("edit_embed").setTitle("Edit Azami Generator Embed");
+  const modal = new ModalBuilder().setCustomId("edit_embed").setTitle("Edit Dokkabi Generator Embed");
   const color = new TextInputBuilder()
     .setCustomId("color")
     .setLabel("Accent color (#RRGGBB)")

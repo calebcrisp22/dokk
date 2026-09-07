@@ -1,7 +1,7 @@
 {
-  "name": "azami-r6-account-generator-bot",
+  "name": "dokkabi-r6-account-generator-bot",
   "version": "1.0.0",
-  "description": "Azami Rainbow Six Siege account generator Discord bot",
+  "description": "Dokkabi Rainbow Six Siege account generator Discord bot",
   "main": "src/index.js",
   "type": "module",
   "scripts": {

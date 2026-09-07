@@ -7,12 +7,12 @@ import {
 } from "discord.js";
 import { getSettings } from "./db.js";
 
-export const GENERATOR_NAME = process.env.BOT_DISPLAY_NAME || "Azami Generator R6";
+export const GENERATOR_NAME = process.env.BOT_DISPLAY_NAME || "Dokkabi Generator R6";
 export const GENERATOR_SHORT_NAME =
   GENERATOR_NAME.replace(/\s+Generator(?:\s+R6)?$/i, "").trim() || GENERATOR_NAME;
-export const AZAMI_IMAGE_URL =
+export const DOKKABI_IMAGE_URL =
   "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUDkj/3lYBT5X9KtGMcZHMvHGfA6/cf2c5e07ef4bc8abd1e5c49c0c7f0f38/r6s-operators-dokkaebi.jpg";
-export const DOKKAEBI_CARD_URL = AZAMI_IMAGE_URL;
+export const DOKKAEBI_CARD_URL = DOKKABI_IMAGE_URL;
 
 export function isAdmin(interaction) {
   const member = interaction.member;
@@ -125,7 +125,7 @@ export function buildAccountEmbed(
   imageReference = ""
 ) {
   const username = account.username ?? "Rainbow Six Account";
-  const image = imageReference || account.skin_link || AZAMI_IMAGE_URL;
+  const image = imageReference || account.skin_link || DOKKABI_IMAGE_URL;
   const embed = new EmbedBuilder()
     .setColor(getColor(settings.embed_color))
     .setAuthor({ name: publicView ? GENERATOR_NAME : GENERATOR_SHORT_NAME })
@@ -236,6 +236,6 @@ export function lockerCardAttachment(account) {
     <text x="24" y="241" fill="#bcb8c7" font-family="Arial" font-size="13">${String(account.username || "Generated account").slice(0, 42)}</text>
   </svg>`;
   return new AttachmentBuilder(Buffer.from(svg), {
-    name: `azami-locker-${account.id}.svg`,
+    name: `dokkabi-locker-${account.id}.svg`,
   });
 }

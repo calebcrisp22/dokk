@@ -1,7 +1,7 @@
-# Azami Rainbow Six Siege Account Generator
+# Dokkabi Rainbow Six Siege Account Generator
 
 A standalone Discord bot for distributing Rainbow Six Siege accounts with the
-Azami Generator R6 presentation from the reference screenshots. It includes free and Premium
+Dokkabi Generator R6 presentation from the reference screenshots. It includes free and Premium
 stock, private account delivery, timed drops, invite tracking, subscriptions,
 vouches, configurable channels, and admin controls.
 
@@ -24,7 +24,7 @@ vouches, configurable channels, and admin controls.
    - `DISCORD_BOT_TOKEN` — bot token from the Discord Developer Portal
    - `CLIENT_ID` — application ID
    - `GUILD_ID` — optional server ID for instant test command registration
-   - `BOT_DISPLAY_NAME` — optional Discord bot name; defaults to `Azami Generator R6`
+   - `BOT_DISPLAY_NAME` — optional Discord bot name; defaults to `Dokkabi Generator R6`
 
 3. Register the slash commands:
 
@@ -61,7 +61,7 @@ vouches, configurable channels, and admin controls.
 | --- | --- |
 | `/addstock` | Add an account to free or Premium stock |
 | `/clearstock` | Remove unused free or Premium stock |
-| `/edit` | Customize the Azami Generator embed appearance |
+| `/edit` | Customize the Dokkabi Generator embed appearance |
 | `/setsubscription` | Grant Premium access for a number of days |
 | `/setchannel` | Configure free or Premium generation channels |
 | `/setcooldown` | Configure generation cooldowns |
@@ -105,7 +105,7 @@ Use JSON when you want to show richer Rainbow Six account details:
 {
   "email": "player@example.com",
   "password": "Password123",
-  "username": "AzamiMain",
+  "username": "DokkabiMain",
   "level": 178,
   "linkedPlatforms": ["Ubisoft", "Xbox", "Steam"],
   "renown": 125000,
@@ -127,7 +127,7 @@ the bot's temporary Discord “thinking” state. The same public message is the
 replaced with an embed naming the member who generated the account and showing
 safe account metadata without exposing credentials. Full account details are
 sent only to the claimant by DM. If `skinLink` is present, Discord displays that
-account image in the DM; otherwise the bot generates an Azami R6 locker-card SVG.
+account image in the DM; otherwise the bot generates an Dokkabi R6 locker-card SVG.
 
 ## Invite tracking
 

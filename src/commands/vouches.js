@@ -14,7 +14,7 @@ export async function execute(interaction) {
     embeds: [
       new EmbedBuilder()
         .setColor("#57f287")
-        .setTitle("⭐ Azami Generator Vouches")
+        .setTitle("⭐ Dokkabi Generator Vouches")
         .setDescription(description)
         .setFooter({ text: "Admins can remove an entry with /deletevouch <id>" })
         .setTimestamp(),

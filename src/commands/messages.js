@@ -18,7 +18,7 @@ export async function execute(interaction) {
   if (!isAdmin(interaction)) {
     return interaction.reply({ content: "❌ Admin permission required.", flags: MessageFlags.Ephemeral });
   }
-  const modal = new ModalBuilder().setCustomId("announcement_modal").setTitle("Azami Generator Announcement");
+  const modal = new ModalBuilder().setCustomId("announcement_modal").setTitle("Dokkabi Generator Announcement");
   const title = new TextInputBuilder().setCustomId("title").setLabel("Title").setStyle(TextInputStyle.Short).setRequired(true);
   const body = new TextInputBuilder().setCustomId("body").setLabel("Message").setStyle(TextInputStyle.Paragraph).setMaxLength(1800).setRequired(true);
   modal.addComponents(new ActionRowBuilder().addComponents(title), new ActionRowBuilder().addComponents(body));

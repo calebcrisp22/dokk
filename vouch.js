@@ -3,7 +3,7 @@ import { addVouch } from "../db.js";
 
 export const data = new SlashCommandBuilder()
   .setName("vouch")
-  .setDescription("Leave a vouch for Azami Generator")
+  .setDescription("Leave a vouch for Dokkabi Generator")
   .addStringOption((option) =>
     option.setName("message").setDescription("Your vouch").setRequired(true).setMaxLength(500)
   );

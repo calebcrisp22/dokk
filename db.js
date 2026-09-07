@@ -45,8 +45,8 @@ db.exec(`
     admin_role_name TEXT,
     hype_enabled INTEGER NOT NULL DEFAULT 0,
     embed_color TEXT NOT NULL DEFAULT '#65c7c4',
-    embed_title TEXT NOT NULL DEFAULT 'Azami Generator R6',
-    footer_text TEXT NOT NULL DEFAULT 'Azami Generator R6'
+    embed_title TEXT NOT NULL DEFAULT 'Dokkabi Generator R6',
+    footer_text TEXT NOT NULL DEFAULT 'Dokkabi Generator R6'
   );
   CREATE TABLE IF NOT EXISTS claims (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,8 +92,8 @@ const missingSettingColumns = {
   admin_role_name: "TEXT",
   hype_enabled: "INTEGER NOT NULL DEFAULT 0",
   embed_color: "TEXT NOT NULL DEFAULT '#65c7c4'",
-  embed_title: "TEXT NOT NULL DEFAULT 'Azami Generator R6'",
-  footer_text: "TEXT NOT NULL DEFAULT 'Azami Generator R6'",
+  embed_title: "TEXT NOT NULL DEFAULT 'Dokkabi Generator R6'",
+  footer_text: "TEXT NOT NULL DEFAULT 'Dokkabi Generator R6'",
 };
 for (const [name, definition] of Object.entries(missingSettingColumns)) {
   if (!settingColumns.has(name)) {
@@ -101,8 +101,8 @@ for (const [name, definition] of Object.entries(missingSettingColumns)) {
   }
 }
 
-db.prepare("UPDATE settings SET embed_title = 'Azami Generator R6' WHERE embed_title = 'DOKKAEBI'").run();
-db.prepare("UPDATE settings SET footer_text = 'Azami Generator R6' WHERE footer_text = 'DOKKAEBI⭐'").run();
+db.prepare("UPDATE settings SET embed_title = 'Dokkabi Generator R6' WHERE embed_title = 'DOKKAEBI'").run();
+db.prepare("UPDATE settings SET footer_text = 'Dokkabi Generator R6' WHERE footer_text = 'DOKKAEBI⭐'").run();
 
 const stockColumns = new Set(
   db.prepare("PRAGMA table_info(stock)").all().map((column) => column.name)
@@ -139,8 +139,8 @@ export function getSettings(guildId) {
       admin_role_name: null,
       hype_enabled: 0,
       embed_color: "#65c7c4",
-      embed_title: "Azami Generator R6",
-      footer_text: "Azami Generator R6",
+      embed_title: "Dokkabi Generator R6",
+      footer_text: "Dokkabi Generator R6",
     }
   );
 }

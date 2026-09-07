@@ -9,7 +9,7 @@ export async function execute(interaction) {
   const settings = getSettings(interaction.guildId);
   const embed = new EmbedBuilder()
     .setColor(settings.embed_color)
-    .setTitle("📦 Azami Generator Stock")
+    .setTitle("📦 Dokkabi Generator Stock")
     .setDescription("Current account availability")
     .addFields(
       { name: "🆓 Free", value: `**${getStockCount("free")}** accounts`, inline: true },

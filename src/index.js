@@ -6,7 +6,7 @@ import { dirname, join } from "path";
 import { getTrackedInvites, syncInvite } from "./db.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const botDisplayName = process.env.BOT_DISPLAY_NAME || "Azami Generator R6";
+const botDisplayName = process.env.BOT_DISPLAY_NAME || "Dokkabi Generator R6";
 
 // ── Client Setup ──────────────────────────────────────────────────────────────
 

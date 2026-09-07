@@ -8,7 +8,7 @@ import {
   MessageFlags,
 } from "discord.js";
 import { addAccount, getSettings, getStockCount, popAccount, setSetting } from "../db.js";
-import { AZAMI_IMAGE_URL, accountButtons, buildAccountEmbed, isAdmin, lockerCardAttachment } from "../utils.js";
+import { DOKKABI_IMAGE_URL, accountButtons, buildAccountEmbed, isAdmin, lockerCardAttachment } from "../utils.js";
 
 export const activeDrops = new Map();
 
@@ -48,13 +48,13 @@ export async function execute(interaction) {
   }
   const embed = new EmbedBuilder()
     .setColor("#5865f2")
-    .setTitle("🎁 Azami Account Drop")
+    .setTitle("🎁 Dokkabi Account Drop")
     .setDescription(`**${slots}** account(s) are available. First come, first served.`)
     .addFields(
       { name: "Available", value: `${slots}`, inline: true },
       { name: "Duration", value: `${seconds}s`, inline: true }
     )
-    .setImage(AZAMI_IMAGE_URL)
+    .setImage(DOKKABI_IMAGE_URL)
     .setFooter({ text: settings.footer_text });
   const row = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("drop_claim").setLabel("🎁 Claim Account").setStyle(ButtonStyle.Success)
